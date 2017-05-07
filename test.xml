@@ -30,7 +30,7 @@
     </target>
 
     <target name="test" depends="clean,makedir, compile" >
-        <junit printsumary="yes" fork="true">
+        <junit printsummary="yes" fork="true">
             <classpath refid="class.path" />
             <test name="RectangleTest" todir="${report.dir}" outfile="result">
                 <formatter type="xml" />
@@ -41,5 +41,5 @@
     <target name="main" depends="test">
         <description>Main Test </description>
     </target>
-    
+
 </project>
