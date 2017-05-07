@@ -41,8 +41,8 @@ pipeline {
             }
 
             steps {
-                sh "wget http://ec2-34-204-3-119.compute-1.amazonaws.com/rectangles/all/rectangles_${env.BUILD_NUMBER}.jar"
-                sh "java -jar rectangles_${env.BUILD_NUMBER}.jar 3 4"
+                sh "wget http://ec2-34-204-3-119.compute-1.amazonaws.com/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar"
+                sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
             }
         }
     }
