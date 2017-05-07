@@ -1,12 +1,14 @@
 pipeline {
     
-    agent {
-        label 'master'
-    }
+    agent none
     
     stages {
 
         stage('Unit Tests') {
+            agent {
+                label 'apache'
+            }
+
             steps {
                 sh 'ant -f test.xml -v'
                 junit 'reports/result.xml'
@@ -14,14 +16,33 @@ pipeline {
         }
 
         stage('build') {
+            agent {
+                label 'apache'
+            }
+
             steps {
                 sh 'ant -f build.xml -v'
             }
         }
 
         stage('deploy') {
+            agent {
+                label 'apache'
+            }
+
             steps {
                 sh "cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/"
+            }
+        }
+
+        stage('Running on Ubuntu') {
+            agent {
+                label 'Ubuntu'
+            }
+
+            steps {
+                sh "wget http://ec2-34-204-3-119.compute-1.amazonaws.com/rectangles/all/rectangles_${env.BUILD_NUMBER}.jar"
+                sh "java -jar rectangles_${env.BUILD_NUMBER}.jar 3 4"
             }
         }
     }
