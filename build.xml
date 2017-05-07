@@ -10,6 +10,7 @@
     <property name="docs.dir" location="docs" />
 
     <path id="class.path">
+        <pathelement location="./lib/junit-4.12.jar" />        
         <pathelement location="./bin" />
     </path>
 
