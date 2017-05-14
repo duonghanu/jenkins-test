@@ -26,6 +26,7 @@ pipeline {
             }
 
             steps {
+                sh 'printenv'
                 sh 'ant -f build.xml -v'
             }
 
