@@ -61,7 +61,7 @@ pipeline {
             }
 
             steps {
-                sh "wget http://ec2-34-204-3-119.compute-1.amazonaws.com/rectangles/all/${env.BRANCH_NAME}/${env.BRANCH_NAME}/rectangle_${env.BUILD_NUMBER}.jar"
+                sh "wget http://ec2-34-204-3-119.compute-1.amazonaws.com/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.BUILD_NUMBER}.jar"
                 sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"                
             }
         }
