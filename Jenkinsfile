@@ -41,6 +41,7 @@ pipeline {
             }
         }
 
+        /*
         stage('Running on Ubuntu') {
             agent {
                 label 'Ubuntu'
@@ -51,6 +52,7 @@ pipeline {
                 sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
             }
         }
+        */
 
         stage('Running on Debian') {
             agent {
@@ -60,6 +62,12 @@ pipeline {
             steps {
                 sh "wget http://ec2-34-204-3-119.compute-1.amazonaws.com/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar"
                 sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"                
+            }
+        }
+
+        state('Promote to Green') {
+            steps {
+                sh "cp /var/www/html/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/green/rectangle_${env.BUILD_NUMBER}.jar"
             }
         }
     }
